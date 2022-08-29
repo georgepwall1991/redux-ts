@@ -4,7 +4,12 @@ interface IRepositoriesState {
     data: string[]
 }
 
-const reducer = (state: IRepositoriesState, action: any) : IRepositoriesState => {
+interface IAction {
+    type: string;
+    payload?: any;
+}
+
+const reducer = (state: IRepositoriesState, action: IAction) : IRepositoriesState => {
     switch (action.type) {
         case 'search_repositories':
             return {
