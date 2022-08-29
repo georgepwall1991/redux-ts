@@ -3,13 +3,25 @@ interface IRepositoriesState {
     error: string | null;
     data: string[]
 }
-
-interface IAction {
-    type: string;
-    payload?: any;
+interface ISearchRepositoriesAction {
+    type: 'search_repositories';
 }
 
-const reducer = (state: IRepositoriesState, action: IAction) : IRepositoriesState => {
+interface ISearchRepositoriesSuccessAction {
+    type: 'search_repositories_success';
+    payload: string[];
+}
+
+interface ISearchRepositoriesErrorAction {
+    type: 'search_repositories_error';
+    payload: string;
+}
+
+
+const reducer = (
+    state: IRepositoriesState,
+    action: ISearchRepositoriesAction | ISearchRepositoriesSuccessAction | ISearchRepositoriesErrorAction
+): IRepositoriesState => {
     switch (action.type) {
         case 'search_repositories':
             return {
